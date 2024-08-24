@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IoT Assignment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .custom-card-height {
+            height: 250px; /* Adjust the height as needed */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 450px;
+        }
+        canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+        }
+    </style>
+</head>
+<body style="background-color: #E5E7EB;">
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-start align-items-center col-sm-2 col-xl-2> 
+                    <a class="navbar-brand d-flex align-items-center" href="#" >
+                        <img src="assets/ptitlogo.png" alt="Logo PTIT" style="width: 50px;" class="rounded-pill">
+                        <span class="navbar-text d-none d-sm-block" style="color: ghostwhite;margin-top: 10px;">IoT và Ứng dụng</span>
+                    </a> 
+            </div>
+            <ul class="navbar-nav col d-none d-sm-flex justify-content-center">    
+                <li class="nav-item" style="margin-top: 10px;">
+                    <a class="nav-link active" href="#dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item" style="margin-top: 10px;">
+                    <a class="nav-link" href="#datasensor">Datasensor</a>
+                </li>
+                <li class="nav-item" style="margin-top: 10px;">
+                    <a class="nav-link" href="#actionhistory">Action History</a>
+                </li>
+            </ul>
+            <div class="dropdown d-sm-none">
+                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    Menu
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#dashboard">Dashboard</a></li>
+                    <li><a class="dropdown-item" href="#datasensor">Datasensor</a></li>
+                    <li><a class="dropdown-item" href="#actionhistory">Action History</a></li>
+                </ul>
+            </div>
+            <!-- Avatar -->
+            <div class="d-sm-flex justify-content-end align-items-center col-xl-3">
+                <a class="navbar-brand" href="#profile">
+                    <img src="assets/avatar.png" alt="Avatar" style="width: 50px; height: 50px; object-fit: cover;" class="rounded-circle">
+                    <span class="navbar-text d-none d-sm-inline" style="color: ghostwhite;">Admin</span>
+                </a>
+            </div>
+            
+        </div>
+        
+    </nav>
+    
+    <div class="container mt-4">
+        <dir class="row">
+            <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                <div class="card border-0 shadow custom-card-height">
+                    <div class="card-body">
+                        <div class="row align-items-center ">
+                            <div class="col">
+                                <h6 class="" style="font-size: xx-large;">Temperature</h6>
+                                <h3 class="" style="font-size: xxx-large;">23</h3>
+                                
+                            </div>
+                            
+                        </div>
+                        <div class="col-auto d-flex justify-content-between align-items-end">
+                            <img src="assets/celsius.svg" alt="Celsius" style="width: 80px;">
+                            <img src="assets/temp.svg" alt="Temperature" style="width: 100px; height: 100px;">
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                <div class="card border-0 shadow custom-card-height">
+                    <div class="card-body">
+                        <div class="row align-items-center ">
+                            <div class="col">
+                                <h6 class="" style="font-size: xx-large;">Humidity</h6>
+                                <h3 class="" style="font-size: xxx-large;">69</h3>
+                            </div>
+                            
+                        </div>
+                        <div class="col-auto d-flex justify-content-between align-items-end">
+                            <img src="assets/percent.svg" alt="Percentage" style="width: 80px;">
+                            <img src="assets/humi.svg" style="width: 100px;height: 100px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                <div class="card border-0 shadow custom-card-height">
+                    <div class="card-body">
+                        <div class="row align-items-center ">
+                            <div class="col">
+                                <h6 class="" style="font-size: xx-large;">Brightness</h6>
+                                <h3 class="" style="font-size: xxx-large;">730</h3>
+                            </div>
+                            
+                        </div>
+                        <div class="col-auto d-flex justify-content-between align-items-end">
+                            <img src="assets/lux.svg" alt="Lux" style="width: 80px;color: black;">
+                            <img src="assets/bright.svg" style="width: 100px;height: 100px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-xl-9 mb-4">
+                    <div class="card border-0 shadow">
+                        <div class="card-header d-sm-flex flex-row align-items-center justify-content-between" style="background-color: bisque;">
+                            <div class="d-block mb-3 mb-sm-0">
+                                <div class="h5 d-none d-sm-flex">Live Time Metrics</div>
+                            </div>
+                        <div class="date-time" id="currentDateTime"></div>
+                    </div>
+                        <div class="card-body p-2">
+                            <div class="chart-container">
+                                <canvas id="combinedChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-12 col-sm-6 col-xl-3">
+                    <div class="card border-0 shadow mb-4">
+                        <div class="card-body">
+                            <h5>Pha1</h5>
+                        </div>
+                    </div>
+                    <div class="card border-0 shadow ">
+                        <div class="card-body">
+                            <h5>Pha2</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </dir>
+        
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('combinedChart').getContext('2d');
+    
+        const combinedChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [
+                    '-18s', '-16s', '-14s', '-12s', '-10s', '-8s', '-6s', '-4s', '-2s', 'Now'
+                ],
+                datasets: [
+                    {
+                        label: 'Temperature (°C)',
+                        data: [22, 23, 24, 22, 23, 25, 24, 22, 21, 20],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderWidth: 1,
+                        yAxisID: 'y-left',
+                        cubicInterpolationMode: 'monotone', // Smooth curves
+                    },
+                    {
+                        label: 'Humidity (%)',
+                        data: [55, 57, 89, 58, 76, 56, 59, 91, 61, 62],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderWidth: 1,
+                        yAxisID: 'y-left',
+                        cubicInterpolationMode: 'monotone', // Smooth curves
+                    },
+                    {
+                        label: 'Brightness (Lux)',
+                        data: [900, 320, 510, 350, 340, 1000, 360, 370, 380, 390],
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                        borderWidth: 1,
+                        yAxisID: 'y-right',
+                        cubicInterpolationMode: 'monotone', // Smooth curves
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Ensure chart resizes with container
+                scales: {
+                    'y-left': {
+                        type: 'linear',
+                        position: 'left',
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Temperature (°C) / Humidity (%)'
+                        }
+                    },
+                    'y-right': {
+                        type: 'linear',
+                        position: 'right',
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Brightness (Lux)'
+                        },
+                        grid: {
+                            drawOnChartArea: false
+                        }
+                    }
+                }
+            }
+        });
+    
+        function updateDateTime() {
+            const now = new Date();
+            const dateTimeString = now.toLocaleString();
+            document.getElementById('currentDateTime').textContent = dateTimeString;
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    </script>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>
