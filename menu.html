@@ -122,7 +122,7 @@
                             
                         </div>
                         <div class="col-auto d-flex justify-content-between align-items-end">
-                            <img src="assets/lux.svg" alt="Lux" style="width: 80px;color: black;">
+                            <img src="assets/Luxx.svg" alt="Lux" style="width: 80px;color: black;">
                             <img src="assets/bright.svg" style="width: 100px;height: 100px;">
                         </div>
                     </div>
@@ -154,9 +154,10 @@
                         <div class="col-12 col-sm-6 col-xl-12 mb-4">
                             <div class="card border-0 shadow custom-button-card-height">
                                 <div class="card-body">
+                                    <h5 class="" style="display: flex;">Fan</h5>
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h3 class="" style="display: flex;">Fan</h3>
+                                            
                                             <img src="assets/fan.svg" alt="Fan" style="width: 70px;">
                                         </div>
                                         <div class="col">
@@ -173,9 +174,15 @@
                             <div class="card border-0 shadow custom-button-card-height">
                                 <div class="card-body">
                                     <div class="row align-items-center">
+                                        <h5 class="" style="display: flex;">Conditioner</h5>
                                         <div class="col">
-                                            <h3 class="" style="display: flex;">Air Conditioner</h3>
-                                            <img src="assets/aircd.svg" alt="Fan" style="width: 70px;">
+                                            
+                                            <img src="assets/aircd.svg" alt="Aircd" style="width: 70px;">
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-check form-switch ">
+                                                <input class="form-check-input " type="checkbox" id="acdToggleButton" style="width: 100px;height: 50px;">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -184,10 +191,16 @@
                         <div class="col-12 col-sm-6 col-xl-12 mb-4">
                             <div class="card border-0 shadow custom-button-card-height">
                                 <div class="card-body">
+                                    <h5 class="" style="display: flex;">Light Bulb</h5>
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="" >Pha2</h6>
-                                            <h3 class="">Value</h3>
+                                            
+                                            <img src="assets/light.svg" alt="Bulb" style="width: 70px;">
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-check form-switch ">
+                                                <input class="form-check-input " type="checkbox" id="bulbToggleButton" style="width: 100px;height: 50px;">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -274,53 +287,80 @@
             }
         });
     
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update background color based on humidity
+            const humidityElement = document.getElementById('humid');
+            const humidity = parseFloat(humidityElement.textContent);
+
+            function bghumidity() {
+                const validHumidity = Math.max(0, Math.min(100, humidity));
+                const percent = 100 - (validHumidity / 100) * 50;
+                const bgColor = `hsl(240, 100%, ${percent}%)`;
+                document.getElementById('bg-humid').style.backgroundColor = bgColor;
+                return bgColor;
+            }
+            bghumidity();
+
+            // Update background color based on brightness
+            const brightElement = document.getElementById('bright');
+            const bright = parseFloat(brightElement.textContent);
+
+            function bgbright() {
+                const validBright = Math.max(0, Math.min(1000, bright));
+                const percent = 100 - (validBright / 1000) * 50;
+                const bgColor = `hsl(40, 100%, ${percent}%)`;
+                document.getElementById('bg-bright').style.backgroundColor = bgColor;
+                return bgColor;
+            }
+            bgbright();
+
+            // Update background color based on temperature
+            const temperatureElement = document.getElementById('temp');
+            const temperature = parseFloat(temperatureElement.textContent);
+
+            function bgtemperature() {
+                const validTemperature = Math.max(0, Math.min(50, temperature));
+                const percent = 100 - (validTemperature / 50) * 50;
+                const bgColor = `hsl(0, 100%, ${percent}%)`;
+                document.getElementById('bg-temp').style.backgroundColor = bgColor;
+                return bgColor;
+            }
+            bgtemperature();
+
+            // Handle toggle switches
+            function handleToggleSwitch(id) {
+                const toggleElement = document.getElementById(id);
+                const label = toggleElement.nextElementSibling;
+
+                toggleElement.addEventListener('change', function() {
+                    if (this.checked) {
+                        this.classList.add('bg-success');
+                        label.textContent = 'On';
+                        console.log(`${id} turned on`);
+                        // Additional logic for turning on the device
+                    } else {
+                        this.classList.remove('bg-success');
+                        label.textContent = 'Off';
+                        console.log(`${id} turned off`);
+                        // Additional logic for turning off the device
+                    }
+                });
+            }
+
+            handleToggleSwitch('fanToggleButton');
+            handleToggleSwitch('acdToggleButton');
+            handleToggleSwitch('bulbToggleButton');
+
+            
+        });
+        // Update the current date and time
         function updateDateTime() {
             const now = new Date();
             const dateTimeString = now.toLocaleString();
             document.getElementById('currentDateTime').textContent = dateTimeString;
         }
         updateDateTime();
-        setInterval(updateDateTime, 1000);
-
-        document.getElementById('fanToggleButton').addEventListener('change', function() {
-            const label = this.nextElementSibling;
-            if (this.checked) {
-                this.classList.add('bg-success'); // Add 'bg-success' class when checked
-                label.textContent = 'On';
-                console.log('Fan turned on');
-                // Additional logic for turning the fan on
-            } else {
-                this.classList.remove('bg-success'); // Remove 'bg-success' class when unchecked
-                label.textContent = 'Off';
-                console.log('Fan turned off');
-                // Additional logic for turning the fan off
-            }
-        });
-
-
-        const temperatureElement = document.getElementById('temp');
-        const temperature = parseFloat(temperatureElement.textContent);
-
-        // Hàm tính toán và trả về màu nền dựa trên nhiệt độ
-        function bgtemperature() {
-            // Giới hạn giá trị nhiệt độ từ 0 đến 50
-            const validTemperature = Math.max(0, Math.min(50, temperature));
-
-            // Tính toán giá trị phần trăm để điều chỉnh màu sắc
-            const percent = 100 - (validTemperature / 50) * 50;
-
-            // Tạo màu nền theo hệ màu HSL
-            const bgColor = `hsl(0, 100%, ${percent}%)`;
-
-            // Áp dụng màu nền cho phần tử, ví dụ: phần tử body
-            document.getElementById('bg-temp').style.backgroundColor = bgColor;
-
-            // Trả về giá trị màu nền nếu cần
-            return bgColor;
-        }
-
-        // Gọi hàm để áp dụng màu nền
-        bgtemperature();
+        setInterval(updateDateTime, 1000);    
     </script>
 
     <!-- Bootstrap JS and Popper.js -->
