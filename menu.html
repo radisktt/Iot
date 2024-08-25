@@ -9,6 +9,9 @@
         .custom-card-height {
             height: 250px; /* Adjust the height as needed */
         }
+        .custom-button-card-height{
+            height: 155px;
+        }
         .chart-container {
             position: relative;
             width: 100%;
@@ -19,10 +22,11 @@
             width: 100% !important;
             height: 100% !important;
         }
+
     </style>
 </head>
 <body style="background-color: #E5E7EB;">
-
+    <!-- navigation-bar -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
         <div class="container-fluid">
             <div class="d-flex justify-content-start align-items-center col-sm-2 col-xl-2> 
@@ -31,6 +35,7 @@
                         <span class="navbar-text d-none d-sm-block" style="color: ghostwhite;margin-top: 10px;">IoT và Ứng dụng</span>
                     </a> 
             </div>
+            <!-- Menu -->
             <ul class="navbar-nav col d-none d-sm-flex justify-content-center">    
                 <li class="nav-item" style="margin-top: 10px;">
                     <a class="nav-link active" href="#dashboard">Dashboard</a>
@@ -66,14 +71,16 @@
     
     <div class="container mt-4">
         <dir class="row">
+            <!-- Temperature Card -->            
             <div class="col-12 col-sm-6 col-xl-4 mb-4">
+
                 <div class="card border-0 shadow custom-card-height">
-                    <div class="card-body">
+                    <div class="card-body " id="bg-temp">
                         <div class="row align-items-center ">
                             <div class="col">
                                 <h6 class="" style="font-size: xx-large;">Temperature</h6>
-                                <h3 class="" style="font-size: xxx-large;">23</h3>
-                                
+                                <h3 class="" style="font-size: xxx-large;" id="temp">23</h3>
+                            
                             </div>
                             
                         </div>
@@ -84,15 +91,15 @@
                         
                     </div>
                 </div>
-
             </div>
+            <!-- Humidity Card -->
             <div class="col-12 col-sm-6 col-xl-4 mb-4">
                 <div class="card border-0 shadow custom-card-height">
-                    <div class="card-body">
+                    <div class="card-body" id="bg-humid">
                         <div class="row align-items-center ">
                             <div class="col">
                                 <h6 class="" style="font-size: xx-large;">Humidity</h6>
-                                <h3 class="" style="font-size: xxx-large;">69</h3>
+                                <h3 class="" style="font-size: xxx-large;" id="humid">69</h3>
                             </div>
                             
                         </div>
@@ -103,13 +110,14 @@
                     </div>
                 </div>
             </div>
+            <!-- Brightness Card -->
             <div class="col-12 col-sm-6 col-xl-4 mb-4">
                 <div class="card border-0 shadow custom-card-height">
-                    <div class="card-body">
+                    <div class="card-body" id="bg-bright">
                         <div class="row align-items-center ">
                             <div class="col">
                                 <h6 class="" style="font-size: xx-large;">Brightness</h6>
-                                <h3 class="" style="font-size: xxx-large;">730</h3>
+                                <h3 class="" style="font-size: xxx-large;" id="bright">730</h3>
                             </div>
                             
                         </div>
@@ -120,15 +128,19 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <!-- Chart and button -->
+            <div class="row m-0 p-0">
                 <div class="col-12 col-sm-12 col-xl-9 mb-4">
+
                     <div class="card border-0 shadow">
+                        <!-- Time -->
                         <div class="card-header d-sm-flex flex-row align-items-center justify-content-between" style="background-color: bisque;">
                             <div class="d-block mb-3 mb-sm-0">
                                 <div class="h5 d-none d-sm-flex">Live Time Metrics</div>
                             </div>
-                        <div class="date-time" id="currentDateTime"></div>
-                    </div>
+                            <div class="date-time" id="currentDateTime"></div>
+                        </div>
+                        <!-- Chart -->
                         <div class="card-body p-2">
                             <div class="chart-container">
                                 <canvas id="combinedChart"></canvas>
@@ -136,17 +148,55 @@
                         </div>
                     </div>
                 </div>
-                <div class="col col-12 col-sm-6 col-xl-3">
-                    <div class="card border-0 shadow mb-4">
-                        <div class="card-body">
-                            <h5>Pha1</h5>
+                <!-- Device Button -->
+                <div class="col col-sm-12 col-xl-3 ">
+                    <div class="row flex">
+                        <div class="col-12 col-sm-6 col-xl-12 mb-4">
+                            <div class="card border-0 shadow custom-button-card-height">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h3 class="" style="display: flex;">Fan</h3>
+                                            <img src="assets/fan.svg" alt="Fan" style="width: 70px;">
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-check form-switch ">
+                                                <input class="form-check-input " type="checkbox" id="fanToggleButton" style="width: 100px;height: 50px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card border-0 shadow ">
-                        <div class="card-body">
-                            <h5>Pha2</h5>
+                        
+                        <div class="col-12 col-sm-6 col-xl-12 mb-4">
+                            <div class="card border-0 shadow custom-button-card-height">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h3 class="" style="display: flex;">Air Conditioner</h3>
+                                            <img src="assets/aircd.svg" alt="Fan" style="width: 70px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-12 col-sm-6 col-xl-12 mb-4">
+                            <div class="card border-0 shadow custom-button-card-height">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="" >Pha2</h6>
+                                            <h3 class="">Value</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
+                    
+                    
                 </div>
             </div>
             
@@ -231,6 +281,46 @@
         }
         updateDateTime();
         setInterval(updateDateTime, 1000);
+
+        document.getElementById('fanToggleButton').addEventListener('change', function() {
+            const label = this.nextElementSibling;
+            if (this.checked) {
+                this.classList.add('bg-success'); // Add 'bg-success' class when checked
+                label.textContent = 'On';
+                console.log('Fan turned on');
+                // Additional logic for turning the fan on
+            } else {
+                this.classList.remove('bg-success'); // Remove 'bg-success' class when unchecked
+                label.textContent = 'Off';
+                console.log('Fan turned off');
+                // Additional logic for turning the fan off
+            }
+        });
+
+
+        const temperatureElement = document.getElementById('temp');
+        const temperature = parseFloat(temperatureElement.textContent);
+
+        // Hàm tính toán và trả về màu nền dựa trên nhiệt độ
+        function bgtemperature() {
+            // Giới hạn giá trị nhiệt độ từ 0 đến 50
+            const validTemperature = Math.max(0, Math.min(50, temperature));
+
+            // Tính toán giá trị phần trăm để điều chỉnh màu sắc
+            const percent = 100 - (validTemperature / 50) * 50;
+
+            // Tạo màu nền theo hệ màu HSL
+            const bgColor = `hsl(0, 100%, ${percent}%)`;
+
+            // Áp dụng màu nền cho phần tử, ví dụ: phần tử body
+            document.getElementById('bg-temp').style.backgroundColor = bgColor;
+
+            // Trả về giá trị màu nền nếu cần
+            return bgColor;
+        }
+
+        // Gọi hàm để áp dụng màu nền
+        bgtemperature();
     </script>
 
     <!-- Bootstrap JS and Popper.js -->
