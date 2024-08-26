@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Datasensor</title>
+    <title>Action History</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
     <style>
@@ -11,51 +11,45 @@
     </style>
 </head>
 <body style="background-color: #E5E7EB;">
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between">
-            <div class="container-fluid">
-                <div class="d-flex justify-content-start align-items-center col-3"> 
-                    <a class="navbar-brand d-flex align-items-center" href="#">
-                        <img src="assets/ptitlogo.png" alt="Logo PTIT" style="width: 50px;" class="rounded-pill">
-                        <span class="navbar-text d-none d-sm-block" style="color: ghostwhite; margin-top: 10px;">IoT và Ứng dụng</span>
-                    </a> 
-                </div>
-                <!-- Menu -->
-                <ul class="navbar-nav col d-none d-sm-flex justify-content-center">    
-                    <li class="nav-item" style="margin-top: 10px;">
-                        <a class="nav-link" href="#dashboard">Dashboard</a>
-                    </li>
-                    <li class="nav-item" style="margin-top: 10px;">
-                        <a class="nav-link active" href="#datasensor">Datasensor</a>
-                    </li>
-                    <li class="nav-item" style="margin-top: 10px;">
-                        <a class="nav-link" href="#actionhistory">Action History</a>
-                    </li>
-                </ul>
-                <div class="dropdown d-sm-none">
-                    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        Menu
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="#dashboard">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="#datasensor">Datasensor</a></li>
-                        <li><a class="dropdown-item" href="#actionhistory">Action History</a></li>
-                    </ul>
-                </div>
-                <!-- Avatar -->
-                <div class="d-sm-flex justify-content-end align-items-center col-xl-3">
-                    <a class="navbar-brand" href="#profile">
-                        <img src="assets/avatar.png" alt="Avatar" style="width: 50px; height: 50px; object-fit: cover;" class="rounded-circle">
-                        <span class="navbar-text d-none d-sm-inline" style="color: ghostwhite;">Admin</span>
-                    </a>
-                </div>
-                
-            </div>
+    <!-- navigation-bar -->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between">
+        <div class="d-flex justify-content-start align-items-center col-3"> 
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="assets/ptitlogo.png" alt="Logo PTIT" style="width: 50px;" class="rounded-pill">
+                <span class="navbar-text d-none d-sm-block" style="color: ghostwhite; margin-top: 10px;">IoT và Ứng dụng</span>
+            </a> 
+        </div>
+        <!-- Menu -->
+        <ul class="navbar-nav col d-none d-sm-flex justify-content-center">    
+            <li class="nav-item" style="margin-top: 10px;">
+                <a class="nav-link" href="#dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item" style="margin-top: 10px;">
+                <a class="nav-link" href="#datasensor">Datasensor</a>
+            </li>
+            <li class="nav-item" style="margin-top: 10px;">
+                <a class="nav-link active" href="#actionhistory">Action History</a>
+            </li>
+        </ul>
+        <div class="dropdown d-sm-none">
+            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Menu
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="#dashboard">Dashboard</a></li>
+                <li><a class="dropdown-item" href="#datasensor">Datasensor</a></li>
+                <li><a class="dropdown-item" href="#actionhistory">Action History</a></li>
+            </ul>
+        </div>
+        <!-- Avatar -->
+        <div class="d-sm-flex justify-content-end align-items-center col-xl-3">
+            <a class="navbar-brand" href="#profile">
+                <img src="assets/avatar.png" alt="Avatar" style="width: 50px; height: 50px; object-fit: cover;" class="rounded-circle">
+                <span class="navbar-text d-none d-sm-inline" style="color: ghostwhite;">Admin</span>
+            </a>
+        </div>
             
-        </nav>
-    </div>
-    
-
+    </nav>
     <div class="container mt-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
             <div class="d-block mb-4 mb-md-0">
@@ -72,20 +66,10 @@
                                 <img src="assets/search.svg" alt="Search Icon" style="width: 25px;">
                             </button>                           
                         </span>
-                        <input type="text" class="form-control" placeholder="Search Datasensor">
+                        <input type="text" class="form-control" placeholder="Search Action History">
                     </div>
                 </div>
                 <div class="btn-toolbar col col-md-6 col-lg-9 col-xl-8 mb-2 mb-md-0">
-                    <div class="dropdown me-4" style="height: 38.46px;">
-                        <button id="dropdownTypeButton" type="button" class="btn btn-sm bg-light d-inline-flex dropdown-toggle align-items-center" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 38.45px;">
-                            Choose type
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="dropdownTypeButton">
-                            <li><a class="dropdown-item d-flex align-items-center" href="#" onclick="updateDropdownText('Temperature')">Temperature</a></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="#" onclick="updateDropdownText('Humidity')">Humidity</a></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="#" onclick="updateDropdownText('Brightness')">Brightness</a></li>
-                        </ul>
-                    </div>
                     <div class="btn-toolbar border-0">
                         <!-- From DateTime Picker -->
                         <div class="input-group me-3">
@@ -111,23 +95,20 @@
                             </div>
                         </div>                            
                     </div>
-
-                
                 </div>
             </div>
         </div>
         <div class="card card-body border-0 shadow table-wrapper table-responsive mt-4">
-            <table class="table table-hover" id="datasensorTable">
+            <table class="table table-hover" id="actionHistoryTable">
                 <thead>
                     <tr>
                         <th class="border-gray-200 text-center">#</th>
                         <th class="border-gray-200 text-center">Time</th>
-                        <th class="border-gray-200 text-center">Temperature <img src="assets/celsius.svg" style="width: 15px;"></i></th>
-                        <th class="border-gray-200 text-center">Humidity <img src="assets/percent.svg" style="width: 15px;"></i></th>
-                        <th class="border-gray-200 text-center">Brightness <img src="assets/lux.svg" style="width: 15px;"></i></th>
+                        <th class="border-gray-200 text-center">Device </th>
+                        <th class="border-gray-200 text-center">Action </th>
                     </tr>
                 </thead>
-                <tbody id="sensorDataBody">
+                <tbody id="actionHistoryBody">
                     
                 </tbody>
             </table>
@@ -145,74 +126,70 @@
     </div>
 
     <script>
-        function updateDropdownText(selectedText) {
-            document.getElementById('dropdownTypeButton').textContent = selectedText; // Updates the button text with the selected item
-        }
-        // Example sensor data array
-        const sensorData = [
-            { time: "08:30 25:08:2024", temperature: 24, humidity: 60, brightness: 300 },
-            { time: "09:45 25:08:2024", temperature: 26, humidity: 55, brightness: 320 },
-            { time: "10:15 25:08:2024", temperature: 25, humidity: 58, brightness: 310 },
-            { time: "11:00 25:08:2024", temperature: 27, humidity: 53, brightness: 340 },
-            { time: "12:30 25:08:2024", temperature: 28, humidity: 52, brightness: 350 },
-            { time: "13:45 25:08:2024", temperature: 29, humidity: 51, brightness: 370 },
-            { time: "15:00 25:08:2024", temperature: 30, humidity: 50, brightness: 380 },
-            { time: "16:15 25:08:2024", temperature: 28, humidity: 54, brightness: 360 },
-            { time: "17:30 25:08:2024", temperature: 27, humidity: 57, brightness: 350 },
-            { time: "18:45 25:08:2024", temperature: 26, humidity: 59, brightness: 330 },
-            { time: "19:00 25:08:2024", temperature: 25, humidity: 60, brightness: 325 },
-            { time: "20:00 25:08:2024", temperature: 24, humidity: 62, brightness: 310 },
-            { time: "21:00 25:08:2024", temperature: 23, humidity: 63, brightness: 305 },
-            { time: "22:00 25:08:2024", temperature: 22, humidity: 64, brightness: 300 },
-            { time: "23:00 25:08:2024", temperature: 21, humidity: 65, brightness: 290 }
+        // Updated ActionHistory data array
+        const actionHistoryData = [
+            { id: 1, time: "08:30 25:08:2024", device: "Fan", action: "On" },
+            { id: 2, time: "09:45 25:08:2024", device: "Air Conditioner", action: "Off" },
+            { id: 3, time: "10:15 25:08:2024", device: "Light Bulb", action: "On" },
+            { id: 4, time: "11:00 25:08:2024", device: "Fan", action: "Off" },
+            { id: 5, time: "12:30 25:08:2024", device: "Air Conditioner", action: "On" },
+            { id: 6, time: "13:45 25:08:2024", device: "Light Bulb", action: "Off" },
+            { id: 7, time: "15:00 25:08:2024", device: "Fan", action: "On" },
+            { id: 8, time: "16:15 25:08:2024", device: "Air Conditioner", action: "Off" },
+            { id: 9, time: "17:30 25:08:2024", device: "Light Bulb", action: "On" },
+            { id: 10, time: "18:45 25:08:2024", device: "Fan", action: "Off" },
+            { id: 11, time: "19:00 25:08:2024", device: "Air Conditioner", action: "On" },
+            { id: 12, time: "20:00 25:08:2024", device: "Light Bulb", action: "Off" },
+            { id: 13, time: "21:00 25:08:2024", device: "Fan", action: "On" },
+            { id: 14, time: "22:00 25:08:2024", device: "Air Conditioner", action: "Off" },
+            { id: 15, time: "23:00 25:08:2024", device: "Light Bulb", action: "On" }
         ];
-        
+
         // Pagination variables
         let rowsPerPage = 10;
         let currentPage = 1;
-        
+
         // Function to render table data
         function renderTable(page = 1) {
-            const tableBody = document.getElementById('sensorDataBody');
+            const tableBody = document.getElementById('actionHistoryBody');
             tableBody.innerHTML = ''; // Clear existing table data
-        
+
             const startIndex = (page - 1) * rowsPerPage;
             const endIndex = startIndex + rowsPerPage;
-            const paginatedData = sensorData.slice(startIndex, endIndex);
-        
-            paginatedData.forEach((data, index) => {
+            const paginatedData = actionHistoryData.slice(startIndex, endIndex);
+
+            paginatedData.forEach((data) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td class="text-center">${startIndex + index + 1}</td>
+                    <td class="text-center">${data.id}</td>
                     <td class="text-center">${data.time}</td>
-                    <td class="text-center">${data.temperature}</td>
-                    <td class="text-center">${data.humidity}</td>
-                    <td class="text-center">${data.brightness}</td>
+                    <td class="text-center">${data.device}</td>
+                    <td class="text-center">${data.action}</td>
                 `;
                 tableBody.appendChild(row);
             });
-        
+
             // Update entries info
             const entriesInfo = document.getElementById('entriesInfo');
-            entriesInfo.innerHTML = `Showing <b>${paginatedData.length}</b> out of <b>${sensorData.length}</b> entries`;
-        
+            entriesInfo.innerHTML = `Showing <b>${paginatedData.length}</b> out of <b>${actionHistoryData.length}</b> entries`;
+
             // Render pagination controls
             renderPaginationControls(page);
         }
-        
+
         // Function to render pagination controls
         function renderPaginationControls(page) {
             const paginationControls = document.getElementById('paginationControls');
             paginationControls.innerHTML = ''; // Clear existing pagination buttons
-        
-            const totalPages = Math.ceil(sensorData.length / rowsPerPage);
-        
+
+            const totalPages = Math.ceil(actionHistoryData.length / rowsPerPage);
+
             // Previous button
             const prevButton = document.createElement('li');
-            prevButton.classList.add('page-item', 'text-dark');
+            prevButton.classList.add('page-item');
             prevButton.innerHTML = `<a class="page-link text-dark" href="#" ${page === 1 ? 'disabled' : ''} onclick="changePage(${page - 1})">Previous</a>`;
             paginationControls.appendChild(prevButton);
-        
+
             // Page number buttons
             for (let i = 1; i <= totalPages; i++) {
                 const pageButton = document.createElement('li');
@@ -220,28 +197,27 @@
                 pageButton.innerHTML = `<a class="page-link text-dark" href="#" ${i === page ? 'class="active"' : ''} onclick="changePage(${i})">${i}</a>`;
                 paginationControls.appendChild(pageButton);
             }
-        
+
             // Next button
             const nextButton = document.createElement('li');
-            nextButton.classList.add('page-item', 'text-dark');
+            nextButton.classList.add('page-item');
             nextButton.innerHTML = `<a class="page-link text-dark" href="#" ${page === totalPages ? 'disabled' : ''} onclick="changePage(${page + 1})">Next</a>`;
             paginationControls.appendChild(nextButton);
         }
-        
+
         // Function to change page
         function changePage(newPage) {
-            if (newPage >= 1 && newPage <= Math.ceil(sensorData.length / rowsPerPage)) {
+            if (newPage >= 1 && newPage <= Math.ceil(actionHistoryData.length / rowsPerPage)) {
                 currentPage = newPage;
                 renderTable(currentPage);
             }
         }
-        
+
         // Initial rendering of the table and pagination
         renderTable(currentPage);
+
     </script>
-    
-        
-    <!-- Bootstrap JS and Popper.js -->
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
