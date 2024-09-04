@@ -121,10 +121,11 @@
                 <thead>
                     <tr>
                         <th class="border-gray-200 text-center">#</th>
-                        <th class="border-gray-200 text-center">Time</th>
+                        
                         <th class="border-gray-200 text-center">Temperature <img src="assets/celsius.svg" style="width: 15px;"></i></th>
                         <th class="border-gray-200 text-center">Humidity <img src="assets/percent.svg" style="width: 15px;"></i></th>
                         <th class="border-gray-200 text-center">Brightness <img src="assets/lux.svg" style="width: 15px;"></i></th>
+                        <th class="border-gray-200 text-center">Time</th>
                     </tr>
                 </thead>
                 <tbody id="sensorDataBody">
@@ -184,10 +185,11 @@
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td class="text-center">${startIndex + index + 1}</td>
-                    <td class="text-center">${data.time}</td>
+                    
                     <td class="text-center">${data.temperature}</td>
                     <td class="text-center">${data.humidity}</td>
                     <td class="text-center">${data.brightness}</td>
+                    <td class="text-center">${data.time}</td>
                 `;
                 tableBody.appendChild(row);
             });

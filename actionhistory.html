@@ -108,9 +108,10 @@
                 <thead>
                     <tr>
                         <th class="border-gray-200 text-center">#</th>
-                        <th class="border-gray-200 text-center">Time</th>
+                        
                         <th class="border-gray-200 text-center">Device </th>
                         <th class="border-gray-200 text-center">Action </th>
+                        <th class="border-gray-200 text-center">Time</th>
                     </tr>
                 </thead>
                 <tbody id="actionHistoryBody">
@@ -167,9 +168,10 @@
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td class="text-center">${data.id}</td>
-                    <td class="text-center">${data.time}</td>
+                    
                     <td class="text-center">${data.device}</td>
                     <td class="text-center">${data.action}</td>
+                    <td class="text-center">${data.time}</td>
                 `;
                 tableBody.appendChild(row);
             });

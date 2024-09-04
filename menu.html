@@ -72,36 +72,32 @@
     <div class="container mt-4">
         <dir class="row">
             <!-- Temperature Card -->            
-            <div class="col-12 col-sm-6 col-xl-4 mb-4">
 
-                <div class="card border-0 shadow custom-card-height">
-                    <div class="card-body " id="bg-temp">
-                        <div class="row align-items-center ">
+            <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                <div class="card border-0 shadow custom-card-height" id="bg-temp">
+                    <div class="card-body">
+                        <div class="row align-items-center">
                             <div class="col">
-                                <h6 class="" style="font-size: xx-large;">Temperature</h6>
-                                <h3 class="" style="font-size: xxx-large;" id="temp">23</h3>
-                            
+                                <h6 class="mb-0" style="font-size: xx-large;">Temperature</h6>
+                                <h3 class="mb-0" style="font-size: xxx-large;" id="temp">23</h3>
                             </div>
-                            
                         </div>
                         <div class="col-auto d-flex justify-content-between align-items-end">
                             <img src="assets/celsius.svg" alt="Celsius" style="width: 80px;">
                             <img src="assets/temp.svg" alt="Temperature" style="width: 100px; height: 100px;">
                         </div>
-                        
                     </div>
                 </div>
             </div>
             <!-- Humidity Card -->
             <div class="col-12 col-sm-6 col-xl-4 mb-4">
-                <div class="card border-0 shadow custom-card-height">
-                    <div class="card-body" id="bg-humid">
-                        <div class="row align-items-center ">
+                <div class="card border-0 shadow custom-card-height" id="bg-humid">
+                    <div class="card-body">
+                        <div class="row align-items-center">
                             <div class="col">
-                                <h6 class="" style="font-size: xx-large;">Humidity</h6>
-                                <h3 class="" style="font-size: xxx-large;" id="humid">69</h3>
+                                <h6 class="mb-0" style="font-size: xx-large;">Humidity</h6>
+                                <h3 class="mb-0" style="font-size: xxx-large;" id="humid">69</h3>
                             </div>
-                            
                         </div>
                         <div class="col-auto d-flex justify-content-between align-items-end">
                             <img src="assets/percent.svg" alt="Percentage" style="width: 80px;">
@@ -110,16 +106,16 @@
                     </div>
                 </div>
             </div>
+            
             <!-- Brightness Card -->
             <div class="col-12 col-sm-6 col-xl-4 mb-4">
-                <div class="card border-0 shadow custom-card-height">
-                    <div class="card-body" id="bg-bright">
-                        <div class="row align-items-center ">
+                <div class="card border-0 shadow custom-card-height" id="bg-bright">
+                    <div class="card-body">
+                        <div class="row align-items-center">
                             <div class="col">
-                                <h6 class="" style="font-size: xx-large;">Brightness</h6>
-                                <h3 class="" style="font-size: xxx-large;" id="bright">730</h3>
+                                <h6 class="mb-0" style="font-size: xx-large;">Brightness</h6>
+                                <h3 class="mb-0" style="font-size: xxx-large;" id="bright">720</h3>
                             </div>
-                            
                         </div>
                         <div class="col-auto d-flex justify-content-between align-items-end">
                             <img src="assets/Luxx.svg" alt="Lux" style="width: 80px;color: black;">
@@ -128,6 +124,7 @@
                     </div>
                 </div>
             </div>
+            
             <!-- Chart and button -->
             <div class="row m-0 p-0">
                 <div class="col-12 col-sm-12 col-xl-9 mb-4">
@@ -234,7 +231,7 @@
                         data: [22, 23, 24, 22, 23, 25, 24, 22, 21, 20],
                         borderColor: 'rgba(255, 99, 132, 1)',
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderWidth: 1,
+                        borderWidth: 2,
                         yAxisID: 'y-left',
                         cubicInterpolationMode: 'monotone', // Smooth curves
                     },
@@ -243,7 +240,7 @@
                         data: [55, 57, 89, 58, 76, 56, 59, 91, 61, 62],
                         borderColor: 'rgba(54, 162, 235, 1)',
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderWidth: 1,
+                        borderWidth: 2,
                         yAxisID: 'y-left',
                         cubicInterpolationMode: 'monotone', // Smooth curves
                     },
@@ -252,7 +249,7 @@
                         data: [900, 320, 510, 350, 340, 1000, 360, 370, 380, 390],
                         borderColor: 'rgba(255, 206, 86, 1)',
                         backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                        borderWidth: 1,
+                        borderWidth: 2,
                         yAxisID: 'y-right',
                         cubicInterpolationMode: 'monotone', // Smooth curves
                     }
@@ -288,7 +285,7 @@
         });
     
         document.addEventListener('DOMContentLoaded', () => {
-            // Update background color based on humidity
+           // Update background color based on humidity
             const humidityElement = document.getElementById('humid');
             const humidity = parseFloat(humidityElement.textContent);
 
@@ -297,8 +294,8 @@
                 const percent = 100 - (validHumidity / 100) * 50;
                 const bgColor = `hsl(240, 100%, ${percent}%)`;
                 document.getElementById('bg-humid').style.backgroundColor = bgColor;
-                return bgColor;
             }
+
             bghumidity();
 
             // Update background color based on brightness
@@ -310,8 +307,8 @@
                 const percent = 100 - (validBright / 1000) * 50;
                 const bgColor = `hsl(40, 100%, ${percent}%)`;
                 document.getElementById('bg-bright').style.backgroundColor = bgColor;
-                return bgColor;
             }
+
             bgbright();
 
             // Update background color based on temperature
@@ -323,9 +320,10 @@
                 const percent = 100 - (validTemperature / 50) * 50;
                 const bgColor = `hsl(0, 100%, ${percent}%)`;
                 document.getElementById('bg-temp').style.backgroundColor = bgColor;
-                return bgColor;
             }
+
             bgtemperature();
+
 
             // Handle toggle switches
             function handleToggleSwitch(id) {
